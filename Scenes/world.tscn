@@ -1,0 +1,123 @@
+[gd_scene load_steps=7 format=3 uid="uid://dig4uh55ol4wo"]
+
+[ext_resource type="Script" path="res://Scenes/background.gd" id="1_h78dt"]
+[ext_resource type="Texture2D" uid="uid://dpfqvbhg146sd" path="res://Assets/Skybox Castle outside.png" id="1_yxd1r"]
+[ext_resource type="PackedScene" uid="uid://423mngxux0wa" path="res://Scenes/player.tscn" id="3_glb6q"]
+[ext_resource type="PackedScene" uid="uid://c1x3gah2h6a13" path="res://Scenes/skull_head.tscn" id="4_0g6ct"]
+[ext_resource type="Script" path="res://Scenes/end_of_level.gd" id="5_2ykpo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ttwjb"]
+size = Vector2(72, 354)
+
+[node name="World" type="Node2D"]
+
+[node name="Background" type="Node2D" parent="."]
+script = ExtResource("1_h78dt")
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+offset_right = 2720.0
+offset_bottom = 240.0
+scale = Vector2(1.345, 1.345)
+texture = ExtResource("1_yxd1r")
+stretch_mode = 1
+
+[node name="Player" parent="." instance=ExtResource("3_glb6q")]
+position = Vector2(62, 156)
+speed = 300
+
+[node name="Skulls" type="Node" parent="."]
+
+[node name="SkullHead" parent="Skulls" instance=ExtResource("4_0g6ct")]
+position = Vector2(217, 95)
+
+[node name="SkullHead2" parent="Skulls" instance=ExtResource("4_0g6ct")]
+position = Vector2(280, 170)
+
+[node name="SkullHead3" parent="Skulls" instance=ExtResource("4_0g6ct")]
+position = Vector2(365, 231)
+
+[node name="SkullHead4" parent="Skulls" instance=ExtResource("4_0g6ct")]
+position = Vector2(448, 147)
+
+[node name="SkullHead5" parent="Skulls" instance=ExtResource("4_0g6ct")]
+position = Vector2(537, 63)
+
+[node name="SkullHead6" parent="Skulls" instance=ExtResource("4_0g6ct")]
+position = Vector2(597, 142)
+
+[node name="SkullHead7" parent="Skulls" instance=ExtResource("4_0g6ct")]
+position = Vector2(686, 227)
+
+[node name="SkullHead8" parent="Skulls" instance=ExtResource("4_0g6ct")]
+position = Vector2(736, 85)
+
+[node name="SkullHead9" parent="Skulls" instance=ExtResource("4_0g6ct")]
+position = Vector2(799, 160)
+
+[node name="SkullHead10" parent="Skulls" instance=ExtResource("4_0g6ct")]
+position = Vector2(884, 221)
+
+[node name="SkullHead11" parent="Skulls" instance=ExtResource("4_0g6ct")]
+position = Vector2(967, 137)
+
+[node name="SkullHead12" parent="Skulls" instance=ExtResource("4_0g6ct")]
+position = Vector2(1056, 53)
+
+[node name="SkullHead13" parent="Skulls" instance=ExtResource("4_0g6ct")]
+position = Vector2(1116, 132)
+
+[node name="SkullHead14" parent="Skulls" instance=ExtResource("4_0g6ct")]
+position = Vector2(1205, 217)
+
+[node name="SkullHead15" parent="Skulls" instance=ExtResource("4_0g6ct")]
+position = Vector2(1210, 75)
+
+[node name="SkullHead16" parent="Skulls" instance=ExtResource("4_0g6ct")]
+position = Vector2(1273, 150)
+
+[node name="SkullHead17" parent="Skulls" instance=ExtResource("4_0g6ct")]
+position = Vector2(1358, 211)
+
+[node name="SkullHead18" parent="Skulls" instance=ExtResource("4_0g6ct")]
+position = Vector2(1441, 127)
+
+[node name="SkullHead19" parent="Skulls" instance=ExtResource("4_0g6ct")]
+position = Vector2(1530, 43)
+
+[node name="SkullHead20" parent="Skulls" instance=ExtResource("4_0g6ct")]
+position = Vector2(1590, 122)
+
+[node name="SkullHead21" parent="Skulls" instance=ExtResource("4_0g6ct")]
+position = Vector2(1679, 207)
+
+[node name="SkullHead22" parent="Skulls" instance=ExtResource("4_0g6ct")]
+position = Vector2(1699, 65)
+
+[node name="SkullHead23" parent="Skulls" instance=ExtResource("4_0g6ct")]
+position = Vector2(1762, 140)
+
+[node name="SkullHead24" parent="Skulls" instance=ExtResource("4_0g6ct")]
+position = Vector2(1847, 201)
+
+[node name="SkullHead25" parent="Skulls" instance=ExtResource("4_0g6ct")]
+position = Vector2(1930, 117)
+
+[node name="SkullHead26" parent="Skulls" instance=ExtResource("4_0g6ct")]
+position = Vector2(2019, 33)
+
+[node name="SkullHead27" parent="Skulls" instance=ExtResource("4_0g6ct")]
+position = Vector2(2079, 112)
+
+[node name="SkullHead28" parent="Skulls" instance=ExtResource("4_0g6ct")]
+position = Vector2(2168, 197)
+
+[node name="EndOfLevel" type="Area2D" parent="."]
+position = Vector2(2264, -5)
+script = ExtResource("5_2ykpo")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndOfLevel"]
+position = Vector2(26, 167)
+shape = SubResource("RectangleShape2D_ttwjb")
+
+[connection signal="body_entered" from="EndOfLevel" to="Background" method="_on_end_of_level_body_entered"]

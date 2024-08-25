@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://dxghtprti55a3"]
+
+[ext_resource type="Script" path="res://Scenes/boss.gd" id="1_6uy05"]
+[ext_resource type="Texture2D" uid="uid://504dmylh0h2s" path="res://Assets/enemy ships/Vlad.png" id="1_mcvev"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4c0f3"]
+radius = 30.0666
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hetu4"]
+atlas = ExtResource("1_mcvev")
+region = Rect2(0, 0, 74, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ru0ub"]
+atlas = ExtResource("1_mcvev")
+region = Rect2(74, 0, 74, 90)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a0xcu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hetu4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ru0ub")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="VladBoss" type="Area2D"]
+script = ExtResource("1_6uy05")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4c0f3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_a0xcu")
+frame_progress = 0.605432
+
+[node name="SpinTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="BurstTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(168, 0)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="SpinTimer" to="." method="_on_spin_timer_timeout"]
+[connection signal="timeout" from="BurstTimer" to="." method="_on_burst_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
